@@ -8,6 +8,10 @@ class RoomsController < ApplicationController
 	def show
 	end
 
+	def new
+		@room = Room.new
+	end
+
 	private
 
 	def set_room
