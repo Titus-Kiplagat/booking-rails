@@ -1,3 +1,3 @@
 class Booking < ApplicationRecord
-	belong_to :room
+	belongs_to :room
 end
