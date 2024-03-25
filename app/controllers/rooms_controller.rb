@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show]
+  before_action :set_room, only: %i[show edit]
 
   def index
     @rooms = Room.all
@@ -21,6 +21,9 @@ class RoomsController < ApplicationController
       end
     end
   end
+
+	def edit
+	end
 
   private
 
