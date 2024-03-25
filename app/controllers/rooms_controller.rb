@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[show edit]
+  before_action :set_room, only: %i[show edit update]
 
   def index
     @rooms = Room.all
@@ -22,8 +22,17 @@ class RoomsController < ApplicationController
     end
   end
 
-	def edit
-	end
+  def edit; end
+
+  def update
+    respond_to do |format|
+      if @room.update(room_params)
+        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
 
   private
 
