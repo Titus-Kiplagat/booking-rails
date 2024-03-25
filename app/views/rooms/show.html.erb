@@ -1,4 +1,12 @@
-<div>
-<p><span class="font-bold">Name:</span> <%= @room.name %></p>
-<p><span class="font-bold">Capacity:</span> <%= @room.capacity %></p>
+<div class="space-y-3">
+  <h1 class="text-2xl font-bold">Room</h1>
+  <div>
+    <p><span class="font-bold">Name:</span> <%= @room.name %></p>
+    <p><span class="font-bold">Capacity:</span> <%= @room.capacity %></p>
+  </div>
+  <div class="flex gap-3">
+    <%= link_to "Edit", edit_room_path(@room), class: "bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-2 rounded" %>
+    <%= button_to "Delete", @room, method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold px-2 rounded" %>
+  </div>
+  <%= link_to "Back to Home", rooms_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
 </div>
