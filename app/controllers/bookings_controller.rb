@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[show edit update]
+  before_action :set_booking, only: %i[show edit update destroy]
 
   def index
     @bookings = Booking.all
@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @booking = Booking.create(booking_params)
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        format.html { redirect_to @booking, notice: "Booking was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -27,10 +27,17 @@ class BookingsController < ApplicationController
   def update
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+        format.html { redirect_to @booking, notice: "Booking was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @booking.destroy
+    respond_to do |format|
+      format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
     end
   end
 
