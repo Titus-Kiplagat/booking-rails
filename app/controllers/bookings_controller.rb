@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show]
+  before_action :set_booking, only: %i[show edit]
 
   def index
     @bookings = Booking.all
@@ -11,16 +11,18 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
-	def create
-		@booking = Booking.create(booking_params)
-		respond_to do |format|
-			if @booking.save
-				format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
-			else
-				format.html { render :new, status: :unprocessable_entity }
-			end
-		end
-	end
+  def create
+    @booking = Booking.create(booking_params)
+    respond_to do |format|
+      if @booking.save
+        format.html { redirect_to @booking, notice: "Booking was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
+	def edit; end
 
   private
 
@@ -28,7 +30,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-	def booking_params
-		params.require(:booking).permit(:start, :end, :room_id, :capacity)
-	end
+  def booking_params
+    params.require(:booking).permit(:start, :end, :room_id, :capacity)
+  end
 end
