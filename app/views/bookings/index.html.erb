@@ -1,15 +1,18 @@
-<div>
-  <h1>List of Bookings</h1>
-  <ul>
+<div class="space-y-3">
+  <h1 class="text-4xl font-bold underline">List of Bookings</h1>
+  <ul class="space-y-3">
     <% @bookings.each do |booking| %>
       <li>
         <div>
-          <p><span>Start:</span><%= booking.start %></p>
-          <p><span>End:</span><%= booking.end %></p>
-          <p><span>Purpose:</span><%= booking.purpose %></p>
-          <p><span>Room:</span><%= booking.room.name %></p>
+          <p><span class="mr-3 text-xl font-bold">Start:</span><%= booking.start %></p>
+          <p><span class="mr-3 text-xl font-bold">End:</span><%= booking.end %></p>
+          <p><span class="mr-3 text-xl font-bold">Purpose:</span><%= booking.purpose %></p>
+          <p><span class="mr-3 text-xl font-bold">Room:</span>
+            <%= link_to booking.room.name, booking, class: "text-blue-500 hover:text-blue-700" %>
+          </p>
         </div>
       </li>
     <% end %>
   </ul>
+  <%= link_to "Create new Booking", new_booking_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
 </div>

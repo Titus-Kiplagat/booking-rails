@@ -1,6 +1,13 @@
-<div>
-  <p><span>Start:</span><%= @booking.start %></p>
-  <p><span>End:</span><%= @booking.end %></p>
-  <p><span>Purpose:</span><%= @booking.purpose %></p>
-  <p><span>Room:</span><%= @booking.room.name %></p>
+<div class="space-y-6">
+  <h1 class="text-4xl font-bold underline">Show Booking</h1>
+  <div>
+    <p><span class="mr-3 text-xl font-bold">Start:</span><%= @booking.start %></p>
+    <p><span class="mr-3 text-xl font-bold">End:</span><%= @booking.end %></p>
+    <p><span class="mr-3 text-xl font-bold">Purpose:</span><%= @booking.purpose %></p>
+    <p><span class="mr-3 text-xl font-bold">Room:</span><%= @booking.room.name %></p>
+  </div>
+  <div class="flex gap-3">
+    <%= link_to "Edit", edit_booking_path(@booking), class: "bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-2 rounded" %>
+    <%= button_to "Delete", @booking, method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold px-2 rounded" %>
+  </div>
 </div>
