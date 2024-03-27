@@ -1,8 +1,9 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   def index
-    @bookings = Booking.all
+    @bookings = current_user.bookings
   end
 
   def show; end
@@ -12,7 +13,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.create(booking_params)
+    @booking = current_user.bookings.create(booking_params)
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: "Booking was successfully created." }
@@ -44,7 +45,7 @@ class BookingsController < ApplicationController
   private
 
   def set_booking
-    @booking = Booking.find(params[:id])
+    @booking = current_user.bookings.find(params[:id])
   end
 
   def booking_params

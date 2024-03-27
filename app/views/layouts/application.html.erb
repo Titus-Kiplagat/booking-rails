@@ -11,9 +11,17 @@
   </head>
   <body>
     <main class="container mx-auto mt-10">
+      <div>
+        <% if !user_signed_in? %>
+          <%= link_to "Sign in", user_session_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 py-1 rounded" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 py-1 rounded" %>
+        <% else %>
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 py-1 rounded" %>
+        <% end %>
+      </div>
       <div class="mb-6">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <p class="text-green-600 notice"><%= notice %></p>
+        <p class="text-red-600 alert"><%= alert %></p>
       </div>
       <%= yield %>
     </main>
